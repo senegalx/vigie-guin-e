@@ -38,7 +38,7 @@ export const Route = createRootRoute({
           "Plateforme citoyenne indépendante de documentation, cartographie et signalement des incidents liés aux libertés publiques en Guinée.",
       },
       { name: "author", content: "Vigie 224" },
-      { property: "og:title", content: "Vigie 224 — Observatoire Citoyen" },
+      { property: "og:title", content: "Vigie 224 — Observatoire Citoyen des Droits Humains en Guinée" },
       {
         property: "og:description",
         content:
@@ -46,6 +46,10 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Vigie 224 — Observatoire Citoyen des Droits Humains en Guinée" },
+      { name: "description", content: "Vigie Guinée documents and maps human rights incidents in Guinea for transparency and citizen action." },
+      { property: "og:description", content: "Vigie Guinée documents and maps human rights incidents in Guinea for transparency and citizen action." },
+      { name: "twitter:description", content: "Vigie Guinée documents and maps human rights incidents in Guinea for transparency and citizen action." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
