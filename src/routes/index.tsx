@@ -1,26 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/home/Hero";
+import { StatsCounters } from "@/components/home/StatsCounters";
+import { MissionCards } from "@/components/home/MissionCards";
+import { CtaBanner } from "@/components/home/CtaBanner";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Vigie 224 — Observatoire Citoyen des Droits Humains en Guinée" },
+      {
+        name: "description",
+        content:
+          "Cartographier les faits, protéger nos droits. Plateforme citoyenne indépendante d'observation, de documentation et de signalement en Guinée.",
+      },
+      {
+        property: "og:title",
+        content: "Vigie 224 — Cartographier les faits, protéger nos droits",
+      },
+      {
+        property: "og:description",
+        content:
+          "Observatoire citoyen indépendant. Documentation factuelle des incidents liés aux libertés publiques en Guinée.",
+      },
+    ],
+  }),
+  component: HomePage,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function HomePage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Hero />
+      <StatsCounters />
+      <MissionCards />
+      <CtaBanner />
+    </>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
