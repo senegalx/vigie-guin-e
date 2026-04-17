@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignalementRouteImport } from './routes/signalement'
+import { Route as RepressionRouteImport } from './routes/repression'
+import { Route as RegistreRouteImport } from './routes/registre'
+import { Route as MemorialRouteImport } from './routes/memorial'
+import { Route as CartographieRouteImport } from './routes/cartographie'
+import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SignalementRoute = SignalementRouteImport.update({
+  id: '/signalement',
+  path: '/signalement',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RepressionRoute = RepressionRouteImport.update({
+  id: '/repression',
+  path: '/repression',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistreRoute = RegistreRouteImport.update({
+  id: '/registre',
+  path: '/registre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MemorialRoute = MemorialRouteImport.update({
+  id: '/memorial',
+  path: '/memorial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartographieRoute = CartographieRouteImport.update({
+  id: '/cartographie',
+  path: '/cartographie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AProposRoute = AProposRouteImport.update({
+  id: '/a-propos',
+  path: '/a-propos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/cartographie': typeof CartographieRoute
+  '/memorial': typeof MemorialRoute
+  '/registre': typeof RegistreRoute
+  '/repression': typeof RepressionRoute
+  '/signalement': typeof SignalementRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/cartographie': typeof CartographieRoute
+  '/memorial': typeof MemorialRoute
+  '/registre': typeof RegistreRoute
+  '/repression': typeof RepressionRoute
+  '/signalement': typeof SignalementRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/cartographie': typeof CartographieRoute
+  '/memorial': typeof MemorialRoute
+  '/registre': typeof RegistreRoute
+  '/repression': typeof RepressionRoute
+  '/signalement': typeof SignalementRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/a-propos'
+    | '/cartographie'
+    | '/memorial'
+    | '/registre'
+    | '/repression'
+    | '/signalement'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/a-propos'
+    | '/cartographie'
+    | '/memorial'
+    | '/registre'
+    | '/repression'
+    | '/signalement'
+  id:
+    | '__root__'
+    | '/'
+    | '/a-propos'
+    | '/cartographie'
+    | '/memorial'
+    | '/registre'
+    | '/repression'
+    | '/signalement'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AProposRoute: typeof AProposRoute
+  CartographieRoute: typeof CartographieRoute
+  MemorialRoute: typeof MemorialRoute
+  RegistreRoute: typeof RegistreRoute
+  RepressionRoute: typeof RepressionRoute
+  SignalementRoute: typeof SignalementRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signalement': {
+      id: '/signalement'
+      path: '/signalement'
+      fullPath: '/signalement'
+      preLoaderRoute: typeof SignalementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repression': {
+      id: '/repression'
+      path: '/repression'
+      fullPath: '/repression'
+      preLoaderRoute: typeof RepressionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registre': {
+      id: '/registre'
+      path: '/registre'
+      fullPath: '/registre'
+      preLoaderRoute: typeof RegistreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/memorial': {
+      id: '/memorial'
+      path: '/memorial'
+      fullPath: '/memorial'
+      preLoaderRoute: typeof MemorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cartographie': {
+      id: '/cartographie'
+      path: '/cartographie'
+      fullPath: '/cartographie'
+      preLoaderRoute: typeof CartographieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/a-propos': {
+      id: '/a-propos'
+      path: '/a-propos'
+      fullPath: '/a-propos'
+      preLoaderRoute: typeof AProposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +177,22 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AProposRoute: AProposRoute,
+  CartographieRoute: CartographieRoute,
+  MemorialRoute: MemorialRoute,
+  RegistreRoute: RegistreRoute,
+  RepressionRoute: RepressionRoute,
+  SignalementRoute: SignalementRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
