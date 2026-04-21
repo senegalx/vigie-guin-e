@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { GuineaFlag, GuineaFlagStripe } from "./GuineaFlag";
 
 const navItems = [
   { to: "/", label: "Accueil" },
@@ -18,17 +19,22 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+      <GuineaFlagStripe height="h-[3px]" />
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-card">
+          <div className="relative flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-card">
             <ShieldAlert className="h-5 w-5" aria-hidden />
+            <GuineaFlag
+              orientation="vertical"
+              className="absolute -bottom-1 -right-1 h-4 w-1 ring-2 ring-background"
+            />
           </div>
           <div className="leading-tight">
-            <div className="font-display text-base font-bold tracking-tight text-foreground">
+            <div className="flex items-center gap-1.5 font-display text-base font-bold tracking-tight text-foreground">
               Vigie <span className="text-status-missing">224</span>
             </div>
             <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-              Observatoire citoyen
+              Observatoire citoyen · Guinée
             </div>
           </div>
         </Link>

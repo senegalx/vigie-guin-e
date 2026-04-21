@@ -1,11 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GuineaFlagStripe } from "@/components/layout/GuineaFlag";
 
 export function CtaBanner() {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="relative overflow-hidden rounded-2xl border border-border bg-primary p-8 text-primary-foreground sm:p-12">
+        <GuineaFlagStripe height="h-1" className="absolute inset-x-0 top-0" />
         <div
           aria-hidden
           className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-status-missing/15 blur-3xl"
