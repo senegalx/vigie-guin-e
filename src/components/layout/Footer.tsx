@@ -1,17 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { ShieldAlert } from "lucide-react";
+import { GuineaFlag, GuineaFlagStripe } from "./GuineaFlag";
 
 export function Footer() {
   return (
     <footer className="mt-16 border-t border-border bg-surface">
+      <GuineaFlagStripe height="h-[3px]" />
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <ShieldAlert className="h-5 w-5" />
             </div>
-            <div className="font-display text-base font-bold tracking-tight text-foreground">
+            <div className="flex items-center gap-2 font-display text-base font-bold tracking-tight text-foreground">
               Vigie <span className="text-status-missing">224</span>
+              <GuineaFlag className="h-3 w-5" />
             </div>
           </div>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
