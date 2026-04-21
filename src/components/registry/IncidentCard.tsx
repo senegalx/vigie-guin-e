@@ -2,6 +2,7 @@ import { Calendar, MapPin, User } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { StatusBadge } from "./StatusBadge";
 import { VerificationBadge } from "./VerificationBadge";
+import { VictimPhoto } from "./VictimPhoto";
 import type { Incident } from "@/data/types";
 
 const formatDate = (iso: string) =>
