@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GuineaFlag, GuineaFlagStripe } from "@/components/layout/GuineaFlag";
 
 export function Hero() {
   return (
@@ -26,7 +27,7 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-primary-foreground/5 px-3 py-1 text-xs font-medium uppercase tracking-wider text-primary-foreground/85 backdrop-blur">
-            <ShieldAlert className="h-3.5 w-3.5" />
+            <GuineaFlag className="h-2.5 w-4" />
             Mémorial digital · Guinée · 2021 — 2025
           </div>
 
@@ -68,6 +69,7 @@ export function Hero() {
           </div>
         </div>
       </div>
+      <GuineaFlagStripe height="h-1" />
     </section>
   );
 }
