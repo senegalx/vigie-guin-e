@@ -1,6 +1,7 @@
 import { Calendar, MapPin, User } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { StatusBadge } from "./StatusBadge";
+import { VerificationBadge } from "./VerificationBadge";
 import type { Incident } from "@/data/types";
 
 const formatDate = (iso: string) =>
@@ -51,21 +52,21 @@ export function IncidentCard({ incident }: { incident: Incident }) {
         {incident.circumstances}
       </p>
 
-      {incident.unitsInvolved.length > 0 && (
-        <div className="flex flex-wrap items-center gap-1.5 border-t border-border pt-3">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            Unités citées :
-          </span>
-          {incident.unitsInvolved.map((u) => (
-            <span
-              key={u}
-              className="rounded border border-border bg-surface px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground"
-            >
-              {u}
-            </span>
-          ))}
-        </div>
-      )}
+      <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3">
+        <VerificationBadge level={incident.verification} />
+        {incident.unitsInvolved.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1.5">
+            {incident.unitsInvolved.map((u) => (
+              <span
+                key={u}
+                className="rounded border border-border bg-surface px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground"
+              >
+                {u}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
     </Card>
   );
 }
