@@ -4,21 +4,21 @@ import { Card } from "@/components/ui/card";
 const missions = [
   {
     icon: Eye,
-    title: "Observer",
+    title: "Nommer",
     description:
-      "Surveiller en continu l'évolution de l'espace civique et identifier les schémas répétés de répression et d'atteintes aux libertés.",
+      "Donner un nom et un visage à chaque victime. Ne pas la laisser devenir un simple chiffre dans un rapport.",
   },
   {
     icon: FileText,
     title: "Documenter",
     description:
-      "Recenser les faits, croiser les sources, conserver les preuves dans une base de données rigoureuse, vérifiable et accessible.",
+      "Recenser les faits, croiser les sources, conserver les preuves dans une base de données rigoureuse, transparente sur son niveau de vérification.",
   },
   {
     icon: Shield,
-    title: "Signaler",
+    title: "Protéger",
     description:
-      "Offrir aux citoyens un canal sécurisé et anonyme pour rapporter incidents, disparitions et abus, sans crainte de représailles.",
+      "Garantir l'anonymat des sources, des familles et des contributeurs. Un canal sécurisé pour témoigner sans risque.",
   },
 ];
 
@@ -28,10 +28,10 @@ export function MissionCards() {
       <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            Notre mission
+            Notre engagement
           </div>
           <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Trois engagements citoyens, un seul objectif&nbsp;: la transparence.
+            Ce mémorial ne juge pas, il&nbsp;témoigne. Il ne condamne pas, il&nbsp;nomme.
           </h2>
         </div>
 

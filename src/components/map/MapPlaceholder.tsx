@@ -21,16 +21,22 @@ export function MapPlaceholder({ incidents }: { incidents: Incident[] }) {
     return { x, y };
   };
 
-  const statusColor = (s: Incident["status"]) =>
-    s === "décédé"
-      ? "bg-status-deceased"
-      : s === "disparu"
-        ? "bg-status-missing"
-        : s === "libéré"
-          ? "bg-status-resolved"
-          : s === "détenu"
-            ? "bg-status-detained"
-            : "bg-status-injured";
+  const statusColor = (s: Incident["status"]) => {
+    switch (s) {
+      case "tué":
+        return "bg-status-deceased";
+      case "enlevé":
+        return "bg-status-missing";
+      case "kidnappé":
+        return "bg-status-injured";
+      case "disparu":
+        return "bg-status-detained";
+      case "exilé":
+        return "bg-status-exiled";
+      case "prisonnier_politique":
+        return "bg-status-resolved";
+    }
+  };
 
   return (
     <div className="relative h-[60vh] min-h-[480px] w-full overflow-hidden rounded-xl border border-border bg-primary">
@@ -49,13 +55,11 @@ export function MapPlaceholder({ incidents }: { incidents: Incident[] }) {
         className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-status-detained/30"
       />
 
-      {/* Zones approximatives */}
       <div className="absolute inset-x-8 top-8 flex items-center gap-2 text-primary-foreground/70">
         <MapPin className="h-4 w-4" />
         <span className="text-xs font-medium uppercase tracking-wider">Conakry — Guinée</span>
       </div>
 
-      {/* Marqueurs */}
       {incidents.map((inc) => {
         const { x, y } = project(inc.coordinates.lat, inc.coordinates.lng);
         if (x < 0 || x > 100 || y < 0 || y > 100) return null;
@@ -65,7 +69,9 @@ export function MapPlaceholder({ incidents }: { incidents: Incident[] }) {
             className="group absolute -translate-x-1/2 -translate-y-1/2"
             style={{ left: `${x}%`, top: `${y}%` }}
           >
-            <span className={`absolute inset-0 -m-1 animate-ping rounded-full ${statusColor(inc.status)} opacity-40`} />
+            <span
+              className={`absolute inset-0 -m-1 animate-ping rounded-full ${statusColor(inc.status)} opacity-40`}
+            />
             <span
               className={`relative block h-3.5 w-3.5 rounded-full ${statusColor(inc.status)} ring-2 ring-primary-foreground/80 shadow-lg`}
             />
@@ -83,18 +89,18 @@ export function MapPlaceholder({ incidents }: { incidents: Incident[] }) {
         );
       })}
 
-      {/* Légende */}
       <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center gap-3 rounded-lg border border-border/40 bg-background/85 p-3 text-xs backdrop-blur sm:right-auto">
         <div className="flex items-center gap-1.5 font-semibold uppercase tracking-wider text-foreground">
           <Layers className="h-3.5 w-3.5" />
           Légende
         </div>
         {[
-          { label: "Décès", cls: "bg-status-deceased" },
-          { label: "Disparition", cls: "bg-status-missing" },
-          { label: "Détention", cls: "bg-status-detained" },
-          { label: "Blessé", cls: "bg-status-injured" },
-          { label: "Libéré", cls: "bg-status-resolved" },
+          { label: "Tué·e", cls: "bg-status-deceased" },
+          { label: "Enlevé·e", cls: "bg-status-missing" },
+          { label: "Kidnappé·e", cls: "bg-status-injured" },
+          { label: "Disparu·e", cls: "bg-status-detained" },
+          { label: "Exilé·e", cls: "bg-status-exiled" },
+          { label: "Prisonnier pol.", cls: "bg-status-resolved" },
         ].map((l) => (
           <div key={l.label} className="flex items-center gap-1.5 text-foreground">
             <span className={`h-2.5 w-2.5 rounded-full ${l.cls}`} />

@@ -7,20 +7,20 @@ import { CtaBanner } from "@/components/home/CtaBanner";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vigie 224 — Observatoire Citoyen des Droits Humains en Guinée" },
+      { title: "Vigie 224 — Mémorial digital des victimes du CNRD en Guinée" },
       {
         name: "description",
         content:
-          "Cartographier les faits, protéger nos droits. Plateforme citoyenne indépendante d'observation, de documentation et de signalement en Guinée.",
+          "Plateforme indépendante recensant les personnes tuées, enlevées, kidnappées, disparues, exilées et les prisonniers politiques sous le régime du CNRD depuis le 5 septembre 2021.",
       },
       {
         property: "og:title",
-        content: "Vigie 224 — Cartographier les faits, protéger nos droits",
+        content: "Mémorial digital des victimes du CNRD — Vigie 224",
       },
       {
         property: "og:description",
         content:
-          "Observatoire citoyen indépendant. Documentation factuelle des incidents liés aux libertés publiques en Guinée.",
+          "« Ils avaient un nom. Nous le garderons. » Cartographier les faits, protéger la mémoire des victimes de la répression en Guinée.",
       },
     ],
   }),

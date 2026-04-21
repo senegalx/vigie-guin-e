@@ -1,21 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, MessageCircle, Send } from "lucide-react";
 import { ReportForm } from "@/components/report/ReportForm";
 
 export const Route = createFileRoute("/signalement")({
   head: () => ({
     meta: [
-      { title: "Signalement sécurisé — Vigie 224" },
+      { title: "Documenter l'inacceptable — Vigie 224" },
       {
         name: "description",
         content:
-          "Documentez en toute sécurité un incident dont vous avez été témoin. Canal anonyme, données expurgées.",
+          "Canal sécurisé et anonyme pour transmettre un témoignage, une preuve ou un signalement. Protection totale des sources.",
       },
-      { property: "og:title", content: "Signalement sécurisé — Vigie 224" },
+      { property: "og:title", content: "Documenter l'inacceptable en toute sécurité — Vigie 224" },
       {
         property: "og:description",
         content:
-          "Canal citoyen anonyme pour transmettre vos témoignages et preuves. Protection des sources garantie.",
+          "L'État utilise arrestations arbitraires et disparitions forcées. Transmettez vos preuves via canal anonyme.",
       },
     ],
   }),
@@ -34,20 +34,38 @@ function ReportPage() {
           Documenter l'inacceptable, en toute sécurité
         </h1>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          Si vous avez été témoin d'un tir sur des civils, d'un kidnapping nocturne ou de toute
-          atteinte aux libertés, vous pouvez nous transmettre vos preuves. Nous expurgeons
-          systématiquement toute donnée permettant de vous identifier avant publication.
+          L'État utilise des arrestations arbitraires et des disparitions forcées pour museler la
+          dissidence. Si vous avez été témoin d'une exaction, de tirs sur des civils ou d'un
+          kidnapping nocturne par des hommes armés, vous pouvez nous transmettre vos preuves
+          (photos, vidéos, témoignages).
         </p>
+        <div className="mt-4 rounded-lg border border-status-resolved/30 bg-status-resolved/10 p-4 text-sm text-foreground">
+          <strong className="font-semibold">Garantie de sécurité :</strong> ce canal est anonyme.
+          Nous expurgeons systématiquement toutes les données permettant de vous identifier avant
+          toute publication, afin de vous protéger de toute tentative de représailles.
+        </div>
       </header>
 
       <div className="mt-8 rounded-2xl border border-border bg-surface p-6 shadow-card sm:p-8">
         <ReportForm />
       </div>
 
-      <div className="mt-6 rounded-lg border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
-        Pour des preuves particulièrement sensibles (vidéos, identités), privilégiez un canal
-        chiffré bout-en-bout (Signal, Telegram). Les coordonnées sont disponibles sur demande
-        auprès des coalitions partenaires.
+      <div className="mt-6 rounded-lg border border-border bg-muted/40 p-4">
+        <div className="flex items-start gap-3">
+          <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+          <div className="text-sm text-muted-foreground">
+            <div className="font-semibold text-foreground">Preuves particulièrement sensibles</div>
+            <p className="mt-1 leading-relaxed">
+              Pour des vidéos, des identités ou des documents critiques, privilégiez un canal
+              chiffré bout-en-bout (Signal, Telegram). Les coordonnées sécurisées sont disponibles
+              sur demande auprès des coalitions partenaires de la société civile guinéenne.
+            </p>
+            <div className="mt-3 inline-flex items-center gap-2 text-xs font-medium text-primary">
+              <Send className="h-3.5 w-3.5" />
+              Signal · Telegram (sur demande)
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
