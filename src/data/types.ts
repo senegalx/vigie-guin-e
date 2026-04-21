@@ -65,6 +65,11 @@ export interface Incident {
   circumstances: string;
   unitsInvolved: UnitCode[];
   /**
+   * Portrait / preuve visuelle. Optionnel — respecter la dignité des victimes
+   * et le consentement des familles. Laisser vide si non autorisé.
+   */
+  photoUrl?: string;
+  /**
    * Donnée sensible — uniquement pour usage interne / suivi.
    * NE JAMAIS afficher publiquement.
    */
