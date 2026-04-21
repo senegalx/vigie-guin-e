@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { StatusBadge, STATUS_OPTIONS, STATUS_LABEL } from "@/components/registry/StatusBadge";
 import { VerificationBadge } from "@/components/registry/VerificationBadge";
+import { VictimPhoto } from "@/components/registry/VictimPhoto";
 import { mockIncidents } from "@/data/mockIncidents";
 import type { IncidentStatus } from "@/data/types";
 import { cn } from "@/lib/utils";
@@ -104,12 +105,23 @@ function MemorialPage() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((v) => (
-          <Card key={v.id} className="flex flex-col gap-4 p-5 shadow-card">
-            <div className="flex items-start justify-between gap-2">
-              <div className="min-w-0">
-                <h3 className="font-display text-lg font-semibold text-foreground">
+          <Card key={v.id} className="flex flex-col gap-4 overflow-hidden p-0 shadow-card">
+            <div className="relative">
+              <VictimPhoto
+                name={v.victimName}
+                photoUrl={v.photoUrl}
+                aspect="portrait"
+                className="rounded-none border-0 border-b"
+              />
+              <div className="absolute right-3 top-3">
+                <StatusBadge status={v.status} />
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 px-5 pb-5">
+              <div>
+                <h3 className="font-display text-lg font-semibold leading-tight text-foreground">
                   {v.victimName}
                 </h3>
                 {(v.profession || v.age) && (
@@ -120,23 +132,22 @@ function MemorialPage() {
                   </p>
                 )}
               </div>
-              <StatusBadge status={v.status} />
-            </div>
-            <div className="space-y-1.5 text-sm text-foreground">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-                {formatDate(v.date)}
+              <div className="space-y-1.5 text-sm text-foreground">
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  {formatDate(v.date)}
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                  {v.location}
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-muted-foreground" />
-                {v.location}
+              <p className="border-t border-border pt-3 text-sm leading-relaxed text-muted-foreground">
+                {v.circumstances}
+              </p>
+              <div className="border-t border-border pt-3">
+                <VerificationBadge level={v.verification} />
               </div>
-            </div>
-            <p className="border-t border-border pt-3 text-sm leading-relaxed text-muted-foreground">
-              {v.circumstances}
-            </p>
-            <div className="border-t border-border pt-3">
-              <VerificationBadge level={v.verification} />
             </div>
           </Card>
         ))}
