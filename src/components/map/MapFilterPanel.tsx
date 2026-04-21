@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { mockUnits } from "@/data/mockUnits";
-import { STATUS_OPTIONS } from "@/components/registry/StatusBadge";
+import { STATUS_OPTIONS, STATUS_LABEL } from "@/components/registry/StatusBadge";
 import type { IncidentStatus, UnitCode } from "@/data/types";
 
 export interface MapFilters {
@@ -20,12 +20,14 @@ export function MapFilterPanel({
 }) {
   const toggleStatus = (s: IncidentStatus) => {
     const next = new Set(filters.statuses);
-    next.has(s) ? next.delete(s) : next.add(s);
+    if (next.has(s)) next.delete(s);
+    else next.add(s);
     onChange({ ...filters, statuses: next });
   };
   const toggleUnit = (u: UnitCode) => {
     const next = new Set(filters.units);
-    next.has(u) ? next.delete(u) : next.add(u);
+    if (next.has(u)) next.delete(u);
+    else next.add(u);
     onChange({ ...filters, units: next });
   };
 
@@ -45,7 +47,7 @@ export function MapFilterPanel({
 
       <div>
         <Label className="text-xs font-semibold uppercase tracking-wider text-foreground">
-          Statut de l'incident
+          Catégorie de victime
         </Label>
         <div className="mt-3 space-y-2.5">
           {STATUS_OPTIONS.map((s) => (
@@ -54,7 +56,7 @@ export function MapFilterPanel({
                 checked={filters.statuses.has(s)}
                 onCheckedChange={() => toggleStatus(s)}
               />
-              <span className="capitalize text-foreground">{s}</span>
+              <span className="text-foreground">{STATUS_LABEL[s]}</span>
             </label>
           ))}
         </div>
