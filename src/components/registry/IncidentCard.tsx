@@ -15,20 +15,25 @@ const formatDate = (iso: string) =>
 export function IncidentCard({ incident }: { incident: Incident }) {
   return (
     <Card className="flex flex-col gap-4 p-5 shadow-card transition-shadow hover:shadow-elevated">
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            <User className="h-3.5 w-3.5" />
-            <span>
-              {incident.profession ?? "Citoyen·ne"}
-              {incident.age ? ` · ${incident.age} ans` : ""}
-            </span>
-          </div>
-          <h3 className="mt-1 truncate font-display text-lg font-semibold text-foreground">
-            {incident.victimName}
-          </h3>
+      <div className="flex items-start gap-4">
+        <div className="w-20 shrink-0 sm:w-24">
+          <VictimPhoto name={incident.victimName} photoUrl={incident.photoUrl} />
         </div>
-        <StatusBadge status={incident.status} />
+        <div className="flex min-w-0 flex-1 items-start justify-between gap-2">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <User className="h-3.5 w-3.5" />
+              <span className="truncate">
+                {incident.profession ?? "Citoyen·ne"}
+                {incident.age ? ` · ${incident.age} ans` : ""}
+              </span>
+            </div>
+            <h3 className="mt-1 font-display text-lg font-semibold leading-tight text-foreground">
+              {incident.victimName}
+            </h3>
+          </div>
+          <StatusBadge status={incident.status} />
+        </div>
       </div>
 
       <div className="grid gap-2 text-sm">
