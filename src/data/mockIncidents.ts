@@ -1,7 +1,7 @@
 import type { Incident } from "./types";
 
 /**
- * Données factices pour le prototype.
+ * Données factices pour le prototype — Mémorial digital des victimes du CNRD.
  * Sources : témoignages publics, rapports TLP Guinée, presse indépendante.
  * Coordonnées GPS approximatives (Conakry) — à vérifier en production.
  */
@@ -10,7 +10,8 @@ export const mockIncidents: Incident[] = [
     id: "inc-001",
     victimName: "Oumar Sylla (Foniké Menguè)",
     profession: "Coordinateur FNDC",
-    status: "disparu",
+    status: "kidnappé",
+    verification: "vérifié",
     type: "Kidnapping nocturne",
     date: "2024-07-09",
     location: "Hafia-Minière, Conakry",
@@ -24,7 +25,8 @@ export const mockIncidents: Incident[] = [
     victimName: "Thierno Mamadou Diallo",
     age: 19,
     profession: "Élève",
-    status: "décédé",
+    status: "tué",
+    verification: "vérifié",
     type: "Tir par balle",
     date: "2022-06-01",
     location: "Hamdallaye Prince, Conakry",
@@ -36,7 +38,8 @@ export const mockIncidents: Incident[] = [
   {
     id: "inc-003",
     victimName: "Nene Oussou Diallo",
-    status: "disparu",
+    status: "enlevé",
+    verification: "en_cours",
     type: "Enlèvement à domicile",
     date: "2026-01-09",
     location: "Gbessia, Conakry",
@@ -49,7 +52,8 @@ export const mockIncidents: Incident[] = [
     id: "inc-004",
     victimName: "Amadou Sow",
     profession: "Travailleur",
-    status: "décédé",
+    status: "tué",
+    verification: "vérifié",
     type: "Décès en détention",
     date: "2022-07-30",
     location: "Hamdallaye 1, Conakry",
@@ -61,7 +65,8 @@ export const mockIncidents: Incident[] = [
   {
     id: "inc-005",
     victimName: "Ibrahima Balde",
-    status: "décédé",
+    status: "tué",
+    verification: "vérifié",
     type: "Tir par balle",
     date: "2022-08-17",
     location: "Wanindara, Conakry",
@@ -73,7 +78,8 @@ export const mockIncidents: Incident[] = [
   {
     id: "inc-006",
     victimName: "Mamadou Bella Barry",
-    status: "décédé",
+    status: "tué",
+    verification: "vérifié",
     type: "Tir par balle",
     date: "2022-07-29",
     location: "Hamdallaye, Conakry",
@@ -86,7 +92,8 @@ export const mockIncidents: Incident[] = [
     id: "inc-007",
     victimName: "Mamadou Billo Bah",
     profession: "Cadre FNDC",
-    status: "disparu",
+    status: "kidnappé",
+    verification: "vérifié",
     type: "Kidnapping nocturne",
     date: "2024-07-09",
     location: "Hafia-Minière, Conakry",
@@ -100,19 +107,21 @@ export const mockIncidents: Incident[] = [
     victimName: "Étudiant — Identité protégée",
     age: 22,
     profession: "Étudiant",
-    status: "blessé",
-    type: "Manifestation réprimée",
+    status: "prisonnier_politique",
+    verification: "non_vérifié",
+    type: "Détention arbitraire",
     date: "2023-02-27",
     location: "Cosa, Conakry",
     coordinates: { lat: 9.6067, lng: -13.624 },
     circumstances:
-      "Touché à la jambe lors d'une opération de dispersion. Identité protégée à la demande de la famille.",
+      "Détenu après une manifestation. Identité protégée à la demande de la famille. Témoignage unique en attente de corroboration.",
     unitsInvolved: ["CMIS"],
   },
   {
     id: "inc-009",
     victimName: "Habitant — Identité protégée",
-    status: "détenu",
+    status: "prisonnier_politique",
+    verification: "en_cours",
     type: "Détention arbitraire",
     date: "2024-03-12",
     location: "Bambeto, Conakry",
@@ -125,13 +134,14 @@ export const mockIncidents: Incident[] = [
     id: "inc-010",
     victimName: "Militant — Identité protégée",
     profession: "Militant associatif",
-    status: "libéré",
-    type: "Détention arbitraire",
+    status: "exilé",
+    verification: "vérifié",
+    type: "Exil forcé",
     date: "2023-11-04",
     location: "Kaloum, Conakry",
     coordinates: { lat: 9.5092, lng: -13.7122 },
     circumstances:
-      "Détenu pendant 21 jours puis libéré sans charge. Aucune justification fournie.",
+      "Contraint à l'exil après des menaces directes et une convocation judiciaire à caractère politique. Réfugié en Afrique de l'Ouest.",
     unitsInvolved: ["GN"],
   },
   {
@@ -139,7 +149,8 @@ export const mockIncidents: Incident[] = [
     victimName: "Jeune — Identité protégée",
     age: 17,
     profession: "Élève",
-    status: "décédé",
+    status: "tué",
+    verification: "vérifié",
     type: "Tir par balle",
     date: "2023-05-10",
     location: "Sonfonia, Conakry",
@@ -147,5 +158,19 @@ export const mockIncidents: Incident[] = [
     circumstances:
       "Touché par balle perdue lors d'affrontements entre forces de l'ordre et manifestants.",
     unitsInvolved: ["GN", "BAC"],
+  },
+  {
+    id: "inc-012",
+    victimName: "Journaliste — Identité protégée",
+    profession: "Journaliste",
+    status: "exilé",
+    verification: "vérifié",
+    type: "Exil forcé",
+    date: "2024-09-18",
+    location: "Kaloum, Conakry",
+    coordinates: { lat: 9.51, lng: -13.715 },
+    circumstances:
+      "Contraint à fuir le pays après plusieurs convocations et la suspension de son média. Anonymat préservé pour sécurité.",
+    unitsInvolved: ["INCONNU"],
   },
 ];
