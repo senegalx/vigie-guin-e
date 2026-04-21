@@ -11,7 +11,9 @@ import {
 } from "@/components/ui/select";
 import { IncidentCard } from "@/components/registry/IncidentCard";
 import { mockIncidents } from "@/data/mockIncidents";
-import type { IncidentStatus, IncidentType } from "@/data/types";
+import { STATUS_OPTIONS, STATUS_LABEL } from "@/components/registry/StatusBadge";
+import { VERIFICATION_LEVELS } from "@/components/registry/VerificationBadge";
+import type { IncidentStatus, IncidentType, VerificationLevel } from "@/data/types";
 
 export const Route = createFileRoute("/registre")({
   head: () => ({
@@ -20,23 +22,30 @@ export const Route = createFileRoute("/registre")({
       {
         name: "description",
         content:
-          "Base de données des incidents documentés : recherche, filtres et fiches factuelles vérifiées.",
+          "Base de données des cas documentés : recherche, filtres par catégorie, type d'incident et niveau de vérification.",
       },
       { property: "og:title", content: "Registre factuel — Vigie 224" },
       {
         property: "og:description",
         content:
-          "Recensement vérifié des incidents liés aux libertés publiques en Guinée. Recherche et filtres avancés.",
+          "Recensement des cas documentés sous le régime du CNRD en Guinée. Recherche et filtres avancés.",
       },
     ],
   }),
   component: RegistryPage,
 });
 
+const verifLabel: Record<VerificationLevel, string> = {
+  vérifié: "Vérifié",
+  en_cours: "En cours de vérification",
+  non_vérifié: "Témoignage non vérifié",
+};
+
 function RegistryPage() {
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<IncidentStatus | "all">("all");
   const [typeFilter, setTypeFilter] = useState<IncidentType | "all">("all");
+  const [verifFilter, setVerifFilter] = useState<VerificationLevel | "all">("all");
 
   const filtered = useMemo(() => {
     return mockIncidents.filter((inc) => {
@@ -48,9 +57,10 @@ function RegistryPage() {
         inc.type.toLowerCase().includes(q);
       const matchS = statusFilter === "all" || inc.status === statusFilter;
       const matchT = typeFilter === "all" || inc.type === typeFilter;
-      return matchQ && matchS && matchT;
+      const matchV = verifFilter === "all" || inc.verification === verifFilter;
+      return matchQ && matchS && matchT && matchV;
     });
-  }, [query, statusFilter, typeFilter]);
+  }, [query, statusFilter, typeFilter, verifFilter]);
 
   const types = Array.from(new Set(mockIncidents.map((i) => i.type)));
 
@@ -61,15 +71,15 @@ function RegistryPage() {
           Base de données factuelle
         </div>
         <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Registre des incidents documentés
+          Registre des cas documentés
         </h1>
         <p className="mt-3 text-base text-muted-foreground">
-          Chaque entrée a fait l'objet d'une vérification croisée. Identités sensibles protégées
-          lorsque nécessaire pour la sécurité des familles.
+          Chaque entrée mentionne explicitement son niveau de vérification. Identités sensibles
+          protégées lorsque nécessaire pour la sécurité des familles.
         </p>
       </header>
 
-      <div className="mt-8 grid gap-3 sm:grid-cols-[1fr_auto_auto]">
+      <div className="mt-8 grid gap-3 lg:grid-cols-[1fr_auto_auto_auto]">
         <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -80,21 +90,21 @@ function RegistryPage() {
           />
         </div>
         <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as never)}>
-          <SelectTrigger className="sm:w-[180px]">
+          <SelectTrigger className="lg:w-[200px]">
             <SlidersHorizontal className="h-4 w-4" />
-            <SelectValue placeholder="Statut" />
+            <SelectValue placeholder="Catégorie" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">Tous les statuts</SelectItem>
-            <SelectItem value="décédé">Décès</SelectItem>
-            <SelectItem value="disparu">Disparition</SelectItem>
-            <SelectItem value="détenu">Détention</SelectItem>
-            <SelectItem value="blessé">Blessé</SelectItem>
-            <SelectItem value="libéré">Libéré</SelectItem>
+            <SelectItem value="all">Toutes les catégories</SelectItem>
+            {STATUS_OPTIONS.map((s) => (
+              <SelectItem key={s} value={s}>
+                {STATUS_LABEL[s]}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
         <Select value={typeFilter} onValueChange={(v) => setTypeFilter(v as never)}>
-          <SelectTrigger className="sm:w-[220px]">
+          <SelectTrigger className="lg:w-[200px]">
             <SelectValue placeholder="Type" />
           </SelectTrigger>
           <SelectContent>
@@ -106,11 +116,24 @@ function RegistryPage() {
             ))}
           </SelectContent>
         </Select>
+        <Select value={verifFilter} onValueChange={(v) => setVerifFilter(v as never)}>
+          <SelectTrigger className="lg:w-[200px]">
+            <SelectValue placeholder="Vérification" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tous niveaux</SelectItem>
+            {VERIFICATION_LEVELS.map((v) => (
+              <SelectItem key={v} value={v}>
+                {verifLabel[v]}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="mt-4 text-sm text-muted-foreground">
-        <span className="font-medium text-foreground">{filtered.length}</span> incident
-        {filtered.length > 1 ? "s" : ""} affiché{filtered.length > 1 ? "s" : ""}.
+        <span className="font-medium text-foreground">{filtered.length}</span> cas affiché
+        {filtered.length > 1 ? "s" : ""}.
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -121,7 +144,7 @@ function RegistryPage() {
 
       {filtered.length === 0 && (
         <div className="mt-10 rounded-lg border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-          Aucun incident ne correspond à vos critères.
+          Aucun cas ne correspond à vos critères.
         </div>
       )}
     </div>

@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border bg-primary text-primary-foreground">
-      {/* Subtle grid background */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
@@ -28,24 +27,33 @@ export function Hero() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-primary-foreground/5 px-3 py-1 text-xs font-medium uppercase tracking-wider text-primary-foreground/85 backdrop-blur">
             <ShieldAlert className="h-3.5 w-3.5" />
-            Observatoire indépendant · Guinée
+            Mémorial digital · Guinée · 2021 — 2025
           </div>
 
           <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-            Cartographier les faits, <br className="hidden sm:block" />
-            <span className="text-status-missing">protéger nos droits.</span>
+            Mémorial digital des victimes <br className="hidden sm:block" />
+            <span className="text-status-missing">de la répression du CNRD.</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/75 sm:text-lg">
-            Plateforme citoyenne indépendante d'observation, de documentation et de signalement des
-            incidents liés aux libertés publiques en Guinée. Données factuelles, vérifiées,
-            anonymisées lorsque la sécurité l'exige.
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
+            Depuis le coup d'État du 5 septembre 2021, la Guinée fait face à une féroce répression
+            des voix dissidentes. Cette plateforme indépendante cartographie les exactions pour
+            lutter contre l'oubli et œuvrer pour que justice soit rendue.
+          </p>
+
+          <p className="mt-4 font-display text-base italic text-primary-foreground/70">
+            « Ils avaient un nom. Nous le garderons. »
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" variant="secondary" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+            <Button
+              asChild
+              size="lg"
+              variant="secondary"
+              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
+            >
               <Link to="/cartographie">
-                Consulter la carte
+                Consulter la carte interactive
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -55,7 +63,7 @@ export function Hero() {
               variant="outline"
               className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
             >
-              <Link to="/signalement">Faire un signalement</Link>
+              <Link to="/memorial">Voir le registre des victimes</Link>
             </Button>
           </div>
         </div>

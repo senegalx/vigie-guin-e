@@ -14,14 +14,14 @@ export function CtaBanner() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-primary-foreground/5 px-3 py-1 text-xs font-medium uppercase tracking-wider">
               <Lock className="h-3.5 w-3.5" />
-              Canal sécurisé · anonyme
+              Canal anonyme · sources protégées
             </div>
             <h2 className="mt-4 font-display text-2xl font-bold tracking-tight sm:text-3xl">
-              Témoin d'un incident&nbsp;? Documenter, c'est protéger.
+              Témoin, proche, journaliste&nbsp;? Votre voix peut sauver une mémoire.
             </h2>
-            <p className="mt-2 max-w-xl text-sm text-primary-foreground/75 sm:text-base">
-              Vos signalements alimentent un registre vérifié. Toutes les données identifiantes
-              sont expurgées avant publication.
+            <p className="mt-2 max-w-xl text-sm text-primary-foreground/80 sm:text-base">
+              Toutes les informations identifiant une source sont supprimées avant publication.
+              Documenter, c'est résister à l'oubli.
             </p>
           </div>
           <Button

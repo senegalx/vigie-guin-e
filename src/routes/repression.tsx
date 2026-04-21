@@ -6,17 +6,17 @@ import { mockIncidents } from "@/data/mockIncidents";
 export const Route = createFileRoute("/repression")({
   head: () => ({
     meta: [
-      { title: "Unités impliquées — Vigie 224" },
+      { title: "La machine répressive — Vigie 224" },
       {
         name: "description",
         content:
-          "Cartographie institutionnelle des unités de défense et de sécurité citées dans les incidents documentés.",
+          "Comprendre la chaîne institutionnelle de la répression : BATA, BAC, CMIS, GFS, GN — unités citées dans les cas documentés.",
       },
       { property: "og:title", content: "Comprendre la machine répressive — Vigie 224" },
       {
         property: "og:description",
         content:
-          "BATA, BAC, CMIS, GFS, GN : présentation des unités citées dans les incidents documentés.",
+          "La répression en Guinée ne relève pas de bavures isolées. Elle s'inscrit dans la fermeture progressive de l'espace civique.",
       },
     ],
   }),
@@ -31,12 +31,17 @@ function RepressionPage() {
           Responsabilité institutionnelle
         </div>
         <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Comprendre la chaîne institutionnelle
+          Comprendre la machine répressive
         </h1>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          Les incidents documentés ne relèvent pas de bavures isolées. Ils s'inscrivent dans une
-          fermeture progressive de l'espace civique. Cette page recense les unités les plus
-          fréquemment citées par les témoins et les rapports de la société civile.
+          La répression en Guinée ne relève pas de bavures isolées, mais d'une fermeture
+          progressive de l'espace civique et de la suppression des libertés démocratiques par
+          l'appareil d'État. Des exécutions extrajudiciaires, des détentions injustifiées de
+          militants et des traitements dégradants ont été documentés.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          Cette page recense les unités de forces de défense et de sécurité les plus fréquemment
+          citées par les témoins et les rapports de la société civile.
         </p>
       </header>
 
@@ -60,7 +65,7 @@ function RepressionPage() {
                 <div className="rounded-md bg-primary px-2.5 py-1.5 text-center text-primary-foreground">
                   <div className="font-display text-lg font-bold leading-none">{count}</div>
                   <div className="mt-0.5 text-[9px] font-medium uppercase tracking-wider opacity-80">
-                    cités
+                    cas cités
                   </div>
                 </div>
               </div>
