@@ -56,6 +56,13 @@
   --color-status-detained-foreground: var(--status-detained-foreground);
   --color-status-injured: var(--status-injured);
   --color-status-injured-foreground: var(--status-injured-foreground);
+  --color-status-exiled: var(--status-exiled);
+  --color-status-exiled-foreground: var(--status-exiled-foreground);
+
+  /* Niveaux de vérification éditoriale */
+  --color-verif-confirmed: var(--verif-confirmed);
+  --color-verif-pending: var(--verif-pending);
+  --color-verif-unverified: var(--verif-unverified);
 
   /* Surfaces institutionnelles */
   --color-surface: var(--surface);
@@ -115,6 +122,12 @@
   --status-detained-foreground: oklch(0.985 0.004 247.858);
   --status-injured: oklch(0.65 0.14 50);
   --status-injured-foreground: oklch(0.18 0.04 265);
+  --status-exiled: oklch(0.55 0.12 200); /* Cyan/teal */
+  --status-exiled-foreground: oklch(0.985 0.004 247.858);
+
+  --verif-confirmed: oklch(0.62 0.16 152);
+  --verif-pending: oklch(0.74 0.16 70);
+  --verif-unverified: oklch(0.55 0.04 257);
 
   --chart-1: oklch(0.18 0.04 265);
   --chart-2: oklch(0.62 0.16 152);
@@ -162,6 +175,12 @@
   --status-detained-foreground: oklch(0.97 0.004 247.858);
   --status-injured: oklch(0.72 0.14 50);
   --status-injured-foreground: oklch(0.13 0.03 264.695);
+  --status-exiled: oklch(0.65 0.12 200);
+  --status-exiled-foreground: oklch(0.13 0.03 264.695);
+
+  --verif-confirmed: oklch(0.7 0.16 152);
+  --verif-pending: oklch(0.78 0.16 70);
+  --verif-unverified: oklch(0.65 0.04 257);
 }
 
 @layer base {
